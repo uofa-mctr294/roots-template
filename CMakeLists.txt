@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add the executable
-add_executable(hello_world main.cpp)
+add_executable(hello_world src/main.cpp)
 
 # --- GoogleTest (for integration tests that run the built binary) ---
 include(FetchContent)
