@@ -9,20 +9,33 @@ Root finding can be described as finding all the zero-crossings of an analytical
 ## Requirements
 
 - Provided a function pointer that evaluates `f(x)`
-  - Implement a root finding algorithm that can find the root of `f(x)`
-  - Utilize the root finding algorithm to find a local maxima of `f(x)`
+  - Implement several root finding algorithms that can find the root of `f(x)`
+  - Utilize these root finding algorithm to find local maxima of `f(x)`
+  
+- The required root-finding algorithms are listed here in (approximately) increasing order of difficulty
+  - Bisection Method
+  - Regula Falsi
+  - Newton-Raphson's Method (you will also be given a function pointer that evaluates `g(x) = f``(x)`)
+  - Secant Method
+
+### Testing Requirements
+
+- For the sake of testing we require that all your source files are placed in `src/roots`.
+- We also require that nothing in `src/roots/roots.hpp` or `tests/test_roots.cpp` is removed. You may feel free to add to these files or add additional files to these directories, as long as testing continues to build and run. Any additional changes may require you to changes to `CMakeLists.txt`
+- Your functions are expected to return the correct root within a tolerance of 1e-6. You can also limit iterations to 1e6 to guarentee completion.
+- The tests provided are not exhausetive and during marking more tests may be added, to confirm your code works according to specifications. You are encouraged to add tests of your own to vet your implementations.
 
 ### Hints
 
-- [Regular Falsi Method for solving equations](https://www.geeksforgeeks.org/interview-experiences/program-for-method-of-false-position)
-- You can approximate differentiation by taking the difference between consecutive values of `f(x)` at some small, constant interval
+- The required algorithms are described [here](https://www.geeksforgeeks.org/maths/root-finding-algorithm/).
+- We have provided a sample program that can act as a test driver in `src/roots/main.cpp` but the resulting binary will not be tested. You can modify this program or add additional tests to the `tests` folder to confirm that your implementations function correctly.
 
 ## Building
 
 ```shell
 cmake -S . -B build
 cmake --build build --config Debug
-build\Debug\hello_world.exe
+build\Debug\roots_demo.exe
 ```
 
 ## Testing
@@ -32,4 +45,5 @@ build\Debug\hello_world.exe
 ```shell
 ctest --test-dir build -C Debug
 Add -V for verbose testing
+Add --output-on-failure for information on failed tests
 ```

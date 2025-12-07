@@ -10,12 +10,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Add executables
 add_executable(hello_world src/helloWorld/main.cpp)
 add_executable(greet_world src/greet/main.cpp)
+add_executable(roots_demo src/roots/main.cpp)
 
 # Small library providing the greeting function so unit tests can link to it.
 add_library(greet src/greet/greet.h src/greet/greet.cpp)
 target_include_directories(greet PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/greet)
 target_compile_features(greet PUBLIC cxx_std_17)
 target_link_libraries(greet_world PRIVATE greet)
+
+# Library providing root-finding algorithms.
+add_library(roots src/roots/roots.cpp)
+target_include_directories(roots PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/roots)
+target_compile_features(roots PUBLIC cxx_std_17)
+
+# Link roots_demo executable to roots library
+target_link_libraries(roots_demo PRIVATE roots)
 
 # --- GoogleTest (for integration tests that run the built binary) ---
 include(FetchContent)
@@ -38,6 +47,11 @@ target_link_libraries(test_binary PRIVATE GTest::gtest)
 add_executable(test_unit tests/test_unit.cpp)
 target_link_libraries(test_unit PRIVATE greet GTest::gtest_main)
 add_test(NAME unit_main_test COMMAND test_unit)
+
+# Root-finding unit tests.
+add_executable(test_roots tests/test_roots.cpp)
+target_link_libraries(test_roots PRIVATE roots GTest::gtest_main)
+add_test(NAME roots_test COMMAND test_roots)
 
 # Provide the path to the built executable to the test via a compile definition.
 if (CMAKE_GENERATOR MATCHES "Visual Studio")
