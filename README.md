@@ -21,7 +21,7 @@ Root finding can be described as finding all the zero-crossings of an analytical
 ### Testing Requirements
 
 - For the sake of testing we require that all your source files are placed in `src/roots`.
-- We also require that nothing in `src/roots/roots.hpp` or `tests/test_roots.cpp` is removed. You may feel free to add to these files or add additional files to these directories, as long as testing continues to build and run. Any additional changes may require changes to `CMakeLists.txt`
+- We also require that nothing in `src/roots/roots.hpp`. You may feel free to add to this file or add additional files any directories, as long as testing continues to build and run. You may make changes to `CMakeLists.txt` to accomodate any changes that surpass these bounds, but you are responsible for confirming that testing continues to work.
 - Your functions are expected to return the correct root within a tolerance of 1e-6. You can also limit iterations to 1e6 to guarantee completion.
 - The tests provided are not exhaustive and during marking more tests may be added, to confirm your code works according to specifications. You are encouraged to add tests of your own to vet your implementations.
 
