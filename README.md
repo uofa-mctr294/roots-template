@@ -40,8 +40,6 @@ build\Debug\roots_demo.exe
 
 ## Testing
 
-[Build](#building)
-
 ```shell
 ctest --test-dir build -C Debug
 Add -V for verbose testing
